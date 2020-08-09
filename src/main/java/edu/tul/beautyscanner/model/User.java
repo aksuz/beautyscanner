@@ -8,8 +8,9 @@ import java.util.List;
 
 @Entity
 @Data
-@Builder
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class User {
 
     @Id

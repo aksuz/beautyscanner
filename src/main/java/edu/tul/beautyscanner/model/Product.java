@@ -1,5 +1,6 @@
 package edu.tul.beautyscanner.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,7 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class Product implements Serializable {
 
@@ -22,7 +24,7 @@ public class Product implements Serializable {
     @Column(nullable = false)
     private String barcode;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "product_name")
     private String name;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
@@ -40,7 +42,8 @@ public class Product implements Serializable {
 
     private String url;
     private String picture;
-    private double rating;
+    private int noRatingVotes;
+    private int sumRainingVotes;
 
 
 }

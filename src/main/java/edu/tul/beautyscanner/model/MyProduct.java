@@ -1,5 +1,6 @@
 package edu.tul.beautyscanner.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class MyProduct {
 
@@ -23,6 +25,6 @@ public class MyProduct {
     private Product productId;
 
     private LocalDate openingDate;
-    private int expirationTime;
+    private LocalDate expirationTime;
     private int productRating;
 }
