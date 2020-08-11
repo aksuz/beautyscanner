@@ -1,10 +1,12 @@
 package edu.tul.beautyscanner.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Data
@@ -29,15 +31,13 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-//    @Column(name = "allergen_list")
-    @ManyToMany
-    @JoinTable(name = "user_allergens")
-    private List<Ingredient> allergens;
-
-//    @Column(name = "my_product_list")
-    @ManyToMany
-    @JoinTable(name = "user_my_product")
-    private List<MyProduct> myProducts;
+//    @ManyToMany
+//    @JoinTable(name = "user_allergens")
+//    private List<Ingredient> allergens;
+//
+//    @ManyToMany
+//    @JoinTable(name = "user_my_product")
+//    private List<MyProduct> myProducts;
 
 
 }

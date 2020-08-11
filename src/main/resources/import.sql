@@ -113,7 +113,6 @@ INSERT into product_ingredient (product_id_product, ingredients_id_ingredient) V
 INSERT into product_ingredient (product_id_product, ingredients_id_ingredient) VALUES (1, 7);
 INSERT into product_ingredient (product_id_product, ingredients_id_ingredient) VALUES (1, 8);
 INSERT into product_ingredient (product_id_product, ingredients_id_ingredient) VALUES (1, 9);
-INSERT into product_ingredient (product_id_product, ingredients_id_ingredient) VALUES (1, 10);
 INSERT into product_ingredient (product_id_product, ingredients_id_ingredient) VALUES (1, 11);
 INSERT into product_ingredient (product_id_product, ingredients_id_ingredient) VALUES (1, 12);
 INSERT into product_ingredient (product_id_product, ingredients_id_ingredient) VALUES (1, 13);
@@ -154,15 +153,16 @@ INSERT into user_password (id_password, password, user_id_user) VALUES (2, 'user
 INSERT into user_password (id_password, password, user_id_user) VALUES (3, 'user2', 3);
 INSERT into user_password (id_password, password, user_id_user) VALUES (4, 'user3', 4);
 
-INSERT into user_allergens (user_id_user, allergens_id_ingredient) VALUES (2, 21);
-INSERT into user_allergens (user_id_user, allergens_id_ingredient) VALUES (2, 28);
-INSERT into user_allergens (user_id_user, allergens_id_ingredient) VALUES (2, 30);
+INSERT into user_allergen (id_user_allergen, user_id_user) VALUES (1, 2);
+INSERT into user_allergens (user_allergen_id_user_allergen, allergens_id_ingredient) VALUES (1, 21);
+INSERT into user_allergens (user_allergen_id_user_allergen, allergens_id_ingredient) VALUES (1, 28);
+INSERT into user_allergens (user_allergen_id_user_allergen, allergens_id_ingredient) VALUES (1, 30);
 
 INSERT into my_product (id_myproduct, product_id_id_product, expiration_time, opening_date, product_rating)
 VALUES (1, 1, DATE_ADD(CURDATE(), INTERVAL 6 MONTH), CURDATE(), 4);
 INSERT into my_product (id_myproduct, product_id_id_product, expiration_time, opening_date, product_rating)
 VALUES (2, 6, DATE_ADD(CURDATE(), INTERVAL 6 MONTH), CURDATE(), 5);
 
-INSERT into user_my_product (user_id_user, my_products_id_myproduct) VALUES (2, 1);
-INSERT into user_my_product (user_id_user, my_products_id_myproduct) VALUES (2, 2);
-
+INSERT into user_my_product (id_user_myproduct, user_id_user) VALUES (1, 2);
+INSERT into user_myproducts (user_my_product_id_user_myproduct, my_products_id_myproduct) VALUES (1, 1);
+INSERT into user_myproducts (user_my_product_id_user_myproduct, my_products_id_myproduct) VALUES (1, 2);

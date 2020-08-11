@@ -27,7 +27,7 @@ public class Product implements Serializable {
     @Column(nullable = false, name = "product_name")
     private String name;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Producer producer;
 
     private String description;

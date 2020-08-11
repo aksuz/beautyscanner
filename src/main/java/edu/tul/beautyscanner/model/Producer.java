@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Data
@@ -24,10 +23,10 @@ public class Producer implements Serializable {
     @Column(name = "producer_name", nullable = false)
     private String name;
 
-//    @Column(name = "id_country", nullable = false)
     @ManyToOne
     private Country countryId;
 
-    @OneToMany(mappedBy = "producer")
-    private List<Product> products;
+//    @OneToMany(mappedBy = "producer", orphanRemoval = true)
+//    private List<Product> products;
+
 }

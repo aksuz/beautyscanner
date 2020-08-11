@@ -2,8 +2,8 @@ package edu.tul.beautyscanner.repository;
 
 import edu.tul.beautyscanner.model.Producer;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.stereotype.Repository;
 
-@RepositoryRestResource
+@Repository
 public interface ProducerRepository extends JpaRepository<Producer, Long> {
 }

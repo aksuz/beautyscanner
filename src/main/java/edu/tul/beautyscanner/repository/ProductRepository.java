@@ -3,11 +3,11 @@ package edu.tul.beautyscanner.repository;
 import edu.tul.beautyscanner.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@RepositoryRestResource
+@Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
     Product findByBarcode(String barcode);
 
