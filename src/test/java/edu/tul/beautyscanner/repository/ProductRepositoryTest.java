@@ -11,6 +11,6 @@ public class ProductRepositoryTest {
 
     @Test
     void test() {
-        pr.findAllByCategory("KREM");
+        pr.findAllByCategoryName("KREM");
     }
 }
