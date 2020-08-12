@@ -26,7 +26,7 @@ VALUES (2, '5900950937072', 'Pump Up, tusz do rzęs', 'Niesamowicie podkręcają
 INSERT into product (id_product, barcode, product_name, description, picture, url, producer_id_producer, category_id_category, no_rating_votes, sum_raining_votes)
 VALUES (3, '5907608614484', 'Sebio, normalizujący płyn micelarny', 'Codziennie zapobiega niedoskonałościom.', null, null, 2, 2, 0, 0);
 INSERT into product (id_product, barcode, product_name, description, picture, url, producer_id_producer, category_id_category, no_rating_votes, sum_raining_votes)
-VALUES (4, '3574661271842', 'Biała brzoskwinia i nektarynka, delikatny żel pod prysznic i do kąpieli', 'Nawilża i odświeza.', null, null, 3, 3, 0, 0);
+VALUES (4, '3574661271842', 'Żel pod prysznic i do kąpieli', 'Nawilża i odświeza. Biała brzoskwinia i nektarynka, delikatny.', null, null, 3, 3, 0, 0);
 INSERT into product (id_product, barcode, product_name, description, picture, url, producer_id_producer, category_id_category, no_rating_votes, sum_raining_votes)
 VALUES (5, '8691190419714', 'Extreme gel shine, lakier do paznokci', '65', null, null, 4, 5, 0, 0);
 INSERT into product (id_product, barcode, product_name, description, picture, url, producer_id_producer, category_id_category, no_rating_votes, sum_raining_votes)
