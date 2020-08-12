@@ -37,7 +37,7 @@ public class ProducerController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Producer> getTutorialById(@PathVariable("id") Long id) {
+    public ResponseEntity<Producer> getProducerById(@PathVariable("id") Long id) {
         Optional<Producer> producerData = producerRepository.findById(id);
 
         if (producerData.isPresent()) {
@@ -48,7 +48,7 @@ public class ProducerController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Producer> addCategory(@RequestBody Producer producer) {
+    public ResponseEntity<Producer> addProducer(@RequestBody Producer producer) {
         try {
             producerRepository.save(producer);
             Producer p = new Producer().builder()
@@ -63,7 +63,7 @@ public class ProducerController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Producer> updateTutorial(@PathVariable("id") Long id, @RequestBody Producer producer) {
+    public ResponseEntity<Producer> updateProducer(@PathVariable("id") Long id, @RequestBody Producer producer) {
         Optional<Producer> producerData = producerRepository.findById(id);
 
         if (producerData.isPresent()) {
@@ -79,7 +79,7 @@ public class ProducerController {
     }
 
     @DeleteMapping("/deleteById/{id}")
-    public ResponseEntity<String> deleteCategoryById(@PathVariable("id") Long id) {
+    public ResponseEntity<String> deleteProducerById(@PathVariable("id") Long id) {
         try {
             producerRepository.deleteById(id);
             return new ResponseEntity<>("Deleted CategoryID: "+id, HttpStatus.OK);
@@ -89,7 +89,7 @@ public class ProducerController {
     }
 
     @DeleteMapping("/deleteAll")
-    public ResponseEntity<HttpStatus> deleteAllCategories() {
+    public ResponseEntity<HttpStatus> deleteAllProducers() {
         try {
             producerRepository.deleteAll();
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
