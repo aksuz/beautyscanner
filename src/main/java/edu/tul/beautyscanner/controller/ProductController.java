@@ -35,11 +35,11 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Product>> getAllProducts(){
+    public ResponseEntity<List<Product>> getAllProducts() {
         try {
             List<Product> products = productRepository.findAll();
             products.sort(Comparator.comparing(Product::getName));
-            if(products.isEmpty()) {
+            if (products.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
             return new ResponseEntity<>(products, HttpStatus.OK);
@@ -48,8 +48,28 @@ public class ProductController {
         }
     }
 
+    @GetMapping("/{productId}")
+    public ResponseEntity<Product> getProductById(@PathVariable("productId") Long productId) {
+        Optional<Product> product = productRepository.findById(productId);
+        if (product.isPresent()) {
+            return new ResponseEntity<>(product.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("barcode/{productBarcode}")
+    public ResponseEntity<Product> getProductByBarcode(@PathVariable("productBarcode") String productBarcode) {
+        Product product = productRepository.findByBarcode(productBarcode);
+        if (product != null) {
+            return new ResponseEntity<>(product, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @GetMapping("/category/{category}")
-    public ResponseEntity<List<Product>> getAllProductsFromCategory(@PathVariable("category") Category category){
+    public ResponseEntity<List<Product>> getAllProductsFromCategory(@PathVariable("category") Category category) {
         List<Product> productsData = productRepository.findAllByCategory(category);
 
         if (!productsData.isEmpty()) {
@@ -59,20 +79,8 @@ public class ProductController {
         }
     }
 
-//    @GetMapping("/categoryId/{categoryId}")
-//    public ResponseEntity<List<Product>> getAllProductsFromCategoryId(@PathVariable("categoryId") Long categoryId){
-//        Optional<Category> categoryData = categoryRepository.findById(categoryId);
-//
-//        if (categoryData.isPresent()) {
-//            List<Product> products = productRepository.findAllByCategory(categoryData.get());
-//            return new ResponseEntity<>(products, HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
-
     @GetMapping("/categoryId/{categoryId}")
-    public ResponseEntity<List<Product>> getAllProductsFromCategoryId(@PathVariable("categoryId") Long categoryId){
+    public ResponseEntity<List<Product>> getAllProductsFromCategoryId(@PathVariable("categoryId") Long categoryId) {
         List<Product> productsData = productRepository.findAllByCategoryId(categoryId);
 
         if (!productsData.isEmpty()) {
@@ -83,7 +91,7 @@ public class ProductController {
     }
 
     @GetMapping("/categoryName/{categoryName}")
-    public ResponseEntity<List<Product>> getAllProductsFromCategoryName(@PathVariable("categoryName") String categoryName){
+    public ResponseEntity<List<Product>> getAllProductsFromCategoryName(@PathVariable("categoryName") String categoryName) {
         List<Product> productsData = productRepository.findAllByCategoryName(categoryName);
 
         if (!productsData.isEmpty()) {
@@ -97,7 +105,7 @@ public class ProductController {
     public ResponseEntity<String> deleteProductById(@PathVariable("productId") Long productId) {
         try {
             productRepository.deleteById(productId);
-            return new ResponseEntity<>("Delete successful of productID: "+productId, HttpStatus.OK);
+            return new ResponseEntity<>("Delete successful of productID: " + productId, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -118,7 +126,6 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
 
 
 }

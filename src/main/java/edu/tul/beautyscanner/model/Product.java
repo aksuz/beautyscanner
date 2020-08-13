@@ -42,8 +42,8 @@ public class Product implements Serializable {
 
     private String url;
     private String picture;
-    private int noRatingVotes;
-    private int sumRainingVotes;
+    private double noRatingVotes;
+    private double sumRainingVotes;
 
 
 }

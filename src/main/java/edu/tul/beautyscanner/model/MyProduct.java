@@ -26,5 +26,5 @@ public class MyProduct {
 
     private LocalDate openingDate;
     private LocalDate expirationTime;
-    private int productRating;
+    private double productRating;
 }
