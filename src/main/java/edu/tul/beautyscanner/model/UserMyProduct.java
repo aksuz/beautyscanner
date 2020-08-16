@@ -11,14 +11,17 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "user_products")
 public class UserMyProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_user_myproduct")
+    @Column(name = "id_user_products")
     private Long id;
 
     @ManyToMany
-    @JoinTable(name = "user_myproducts")
+    @JoinTable(name = "user_myproducts",
+    joinColumns={@JoinColumn(name = "user_id", referencedColumnName = "id_user_products")},
+    inverseJoinColumns = {@JoinColumn(name = "my_product_id", referencedColumnName = "id_myproduct")})
     private List<MyProduct> myProducts;
 
     @OneToOne

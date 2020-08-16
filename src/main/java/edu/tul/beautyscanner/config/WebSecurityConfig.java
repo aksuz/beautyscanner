@@ -8,8 +8,7 @@
 //public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //    @Override
 //    protected void configure(HttpSecurity http) throws Exception {
-//        super.configure(http);
-//        http.httpBasic().disable();//.exceptionHandling().accessDeniedHandler();
+//        http.requestMatchers().antMatchers("/api/categories").
 //    }
 //    //konfiguracja do zastrzegania jednej sciezki
 //    //handler dla sciezki

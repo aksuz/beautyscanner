@@ -1,8 +1,10 @@
 package edu.tul.beautyscanner.controller;
 
 import edu.tul.beautyscanner.model.User;
+import edu.tul.beautyscanner.model.UserMyProduct;
 import edu.tul.beautyscanner.model.UserPassword;
 import edu.tul.beautyscanner.repository.MyProductRepository;
+import edu.tul.beautyscanner.repository.UserMyProductRepository;
 import edu.tul.beautyscanner.repository.UserPasswordRepository;
 import edu.tul.beautyscanner.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +21,17 @@ public class UserController {
     private UserRepository userRepository;
     private MyProductRepository myProductRepository;
     private UserPasswordRepository userPasswordRepository;
+    private UserMyProductRepository userMyProductRepository;
 
     @Autowired
-    public UserController(UserRepository userRepository, MyProductRepository myProductRepository, UserPasswordRepository userPasswordRepository) {
+    public UserController(UserRepository userRepository,
+                          MyProductRepository myProductRepository,
+                          UserPasswordRepository userPasswordRepository,
+                          UserMyProductRepository userMyProductRepository) {
         this.userRepository = userRepository;
         this.myProductRepository = myProductRepository;
         this.userPasswordRepository = userPasswordRepository;
+        this.userMyProductRepository = userMyProductRepository;
     }
 
     @GetMapping("/{id}")
@@ -75,17 +82,17 @@ public class UserController {
         }
     }
 
-//    @GetMapping("/userProducts/{userId}")
-//    public ResponseEntity<UserMyProduct> getMyProductUserById(@PathVariable("id") Long id) {
-//        Optional<User> userData = userRepository.findById(id);
-//
-//        if (userData.isPresent()) {
-//            UserMyProduct userMyProduct = userMyProductRepository.findByUser(userData.get());
-//            return new ResponseEntity<>(userMyProduct, HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
+    @GetMapping("/{id}/userProducts")
+    public ResponseEntity<UserMyProduct> getMyProductUserById(@PathVariable("id") Long id) {
+        Optional<User> userData = userRepository.findById(id);
+
+        if (userData.isPresent()) {
+            UserMyProduct userMyProduct = userMyProductRepository.findByUserId(userData.get().getId());
+            return new ResponseEntity<>(userMyProduct, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
 
 

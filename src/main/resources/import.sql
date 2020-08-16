@@ -1,6 +1,6 @@
--- DROP schema beautyscanner;
--- CREATE schema beautyscanner;
-
+DROP schema beautyscanner;
+CREATE schema beautyscanner;
+ 
 INSERT into category (id_category, category_name) VALUES (1, 'WLOSY');
 INSERT into category (id_category, category_name) VALUES (2, 'TWARZ');
 INSERT into category (id_category, category_name) VALUES (3, 'CIALO');
@@ -163,6 +163,6 @@ VALUES (1, 1, DATE_ADD(CURDATE(), INTERVAL 6 MONTH), CURDATE(), 4);
 INSERT into my_product (id_myproduct, product_id_id_product, expiration_time, opening_date, product_rating)
 VALUES (2, 6, DATE_ADD(CURDATE(), INTERVAL 6 MONTH), CURDATE(), 5);
 
-INSERT into user_my_product (id_user_myproduct, user_id_user) VALUES (1, 2);
-INSERT into user_myproducts (user_my_product_id_user_myproduct, my_products_id_myproduct) VALUES (1, 1);
-INSERT into user_myproducts (user_my_product_id_user_myproduct, my_products_id_myproduct) VALUES (1, 2);
+INSERT into user_products (id_user_products, user_id_user) VALUES (1, 2);
+INSERT into user_myproducts (user_id, my_product_id) VALUES (1, 1);
+INSERT into user_myproducts (user_id, my_product_id) VALUES (1, 2);
