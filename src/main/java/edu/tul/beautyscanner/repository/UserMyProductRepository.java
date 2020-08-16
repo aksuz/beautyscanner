@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface UserMyProductRepository extends JpaRepository<UserMyProduct, Long> {
 
-    @Query("SELECT p FROM UserMyProduct p WHERE p.id = :userId")
-    UserMyProduct findByUserId(Long userId);
+    @Query("SELECT p FROM UserMyProduct p WHERE p.user = :user")
+    UserMyProduct findProductsByUser(User user);
 }

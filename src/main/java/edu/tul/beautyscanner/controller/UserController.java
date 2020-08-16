@@ -1,12 +1,10 @@
 package edu.tul.beautyscanner.controller;
 
 import edu.tul.beautyscanner.model.User;
+import edu.tul.beautyscanner.model.UserAllergen;
 import edu.tul.beautyscanner.model.UserMyProduct;
 import edu.tul.beautyscanner.model.UserPassword;
-import edu.tul.beautyscanner.repository.MyProductRepository;
-import edu.tul.beautyscanner.repository.UserMyProductRepository;
-import edu.tul.beautyscanner.repository.UserPasswordRepository;
-import edu.tul.beautyscanner.repository.UserRepository;
+import edu.tul.beautyscanner.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,16 +20,19 @@ public class UserController {
     private MyProductRepository myProductRepository;
     private UserPasswordRepository userPasswordRepository;
     private UserMyProductRepository userMyProductRepository;
+    private UserAllergenRepository userAllergenRepository;
 
     @Autowired
     public UserController(UserRepository userRepository,
                           MyProductRepository myProductRepository,
                           UserPasswordRepository userPasswordRepository,
-                          UserMyProductRepository userMyProductRepository) {
+                          UserMyProductRepository userMyProductRepository,
+                          UserAllergenRepository userAllergenRepository) {
         this.userRepository = userRepository;
         this.myProductRepository = myProductRepository;
         this.userPasswordRepository = userPasswordRepository;
         this.userMyProductRepository = userMyProductRepository;
+        this.userAllergenRepository = userAllergenRepository;
     }
 
     @GetMapping("/{id}")
@@ -87,19 +88,28 @@ public class UserController {
         Optional<User> userData = userRepository.findById(id);
 
         if (userData.isPresent()) {
-            UserMyProduct userMyProduct = userMyProductRepository.findByUserId(userData.get().getId());
+            UserMyProduct userMyProduct = userMyProductRepository.findProductsByUser(userData.get());
             return new ResponseEntity<>(userMyProduct, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
+    @GetMapping("/{id}/userAllergens")
+    public ResponseEntity<UserAllergen> getAllergenUserById(@PathVariable("id") Long id) {
+        Optional<User> userData = userRepository.findById(id);
+
+        if (userData.isPresent()) {
+            UserAllergen userAllergen = userAllergenRepository.findAllergensByUser(userData.get());
+            return new ResponseEntity<>(userAllergen, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
 
     //todo
-    //pobieranie allergenow
     //dodawanie/usuwanie allergenow
-    //pobieranie produktow (myproduct)
     //dodawanie/usuwanie produktow (myproduct)
     //update produktow (myproduct)
     //wswietl wszytskie z kategorii
