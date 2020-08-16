@@ -20,18 +20,17 @@ INSERT into producer (id_producer, producer_name, country_id_id_country) VALUES 
 INSERT into producer (id_producer, producer_name, country_id_id_country) VALUES (6, 'BIELENDA', 1);
 
 INSERT into product (id_product, barcode, product_name, description, picture, url, producer_id_producer, category_id_category, no_rating_votes, sum_raining_votes)
-VALUES (1, '4056800114047', 'Wellaflex, Flexible Ultra Strong Hairspray', 'Zapewnia bardzo mocne utrwalenie i elastyczność fryzury do 24 godzin.', null, null, 1, 1, 1, 4);
+VALUES (1, '4056800114047', 'Wellaflex, Flexible Ultra Strong Hairspray', 'Zapewnia bardzo mocne utrwalenie i elastyczność fryzury do 24 godzin.', null, 'https://static.wizaz.pl/media/cache/500x500/kwc/product/5/d/5d35f5be13aa6.jpeg', 1, 1, 1, 4);
 INSERT into product (id_product, barcode, product_name, description, picture, url, producer_id_producer, category_id_category, no_rating_votes, sum_raining_votes)
-VALUES (2, '5900950937072', 'Pump Up, tusz do rzęs', 'Niesamowicie podkręcająy.', null, null, 5, 4, 5, 21);
+VALUES (2, '5900950937072', 'Pump Up, tusz do rzęs', 'Niesamowicie podkręcająy.', null, 'https://image.ceneostatic.pl/data/products/48680162/i-wibo-mascara-tusz-do-rzes-pump-up-1-szt.jpg', 5, 4, 5, 21);
 INSERT into product (id_product, barcode, product_name, description, picture, url, producer_id_producer, category_id_category, no_rating_votes, sum_raining_votes)
-VALUES (3, '5907608614484', 'Sebio, normalizujący płyn micelarny', 'Codziennie zapobiega niedoskonałościom.', null, null, 2, 2, 0, 0);
+VALUES (3, '5907608614484', 'Sebio, normalizujący płyn micelarny', 'Codziennie zapobiega niedoskonałościom.', null, 'https://image.ceneostatic.pl/data/products/66928088/i-tolpa-sebio-normalizujacy-plyn-micelarny-do-mycia-twarzy-i-oczu-400-ml.jpg', 2, 2, 0, 0);
 INSERT into product (id_product, barcode, product_name, description, picture, url, producer_id_producer, category_id_category, no_rating_votes, sum_raining_votes)
-VALUES (4, '3574661271842', 'Żel pod prysznic i do kąpieli', 'Nawilża i odświeza. Biała brzoskwinia i nektarynka, delikatny.', null, null, 3, 3, 0, 0);
+VALUES (4, '3574661271842', 'Żel pod prysznic i do kąpieli', 'Nawilża i odświeza. Biała brzoskwinia i nektarynka, delikatny.', null, 'https://image.ceneostatic.pl/data/products/30167130/i-le-petit-marseillais-zel-pod-prysznic-biala-brzoskwinia-nektarynka-250ml.jpg', 3, 3, 0, 0);
 INSERT into product (id_product, barcode, product_name, description, picture, url, producer_id_producer, category_id_category, no_rating_votes, sum_raining_votes)
-VALUES (5, '8691190419714', 'Extreme gel shine, lakier do paznokci', '65', null, null, 4, 5, 0, 0);
+VALUES (5, '8691190419714', 'Extreme gel shine, lakier do paznokci', '65', null, 'https://www.wiadomoscihandlowe.pl/img/produkty/21900_0_zelowy-lakier-do-paznokci-golden-rose-extr_2.jpg', 4, 5, 0, 0);
 INSERT into product (id_product, barcode, product_name, description, picture, url, producer_id_producer, category_id_category, no_rating_votes, sum_raining_votes)
-VALUES (6, '5902169024277', 'Fluid matujący', 'Formuła przeciw błyszczeniu, jasny beż 01.', null, null, 6, 4,1, 5);
-
+VALUES (6, '5902169024277', 'Fluid matujący', 'Formuła przeciw błyszczeniu, jasny beż 01.', null, 'https://wizaz24.pl/image/7ws98x27hts7xcwzz8w2', 6, 4,1, 5);
 
 INSERT into ingredient (id_ingredient, ingredient_name, url, is_natural, is_allergen, is_irritant, is_comedogenic, is_carcinogenic, is_forbidden_during_pregnancy)
 VALUES (1, 'Dimethyl Ether', null, false, false, false, false, false, false);
