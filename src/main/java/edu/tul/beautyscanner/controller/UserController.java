@@ -1,15 +1,13 @@
 package edu.tul.beautyscanner.controller;
 
-import edu.tul.beautyscanner.model.User;
-import edu.tul.beautyscanner.model.UserAllergen;
-import edu.tul.beautyscanner.model.UserMyProduct;
-import edu.tul.beautyscanner.model.UserPassword;
+import edu.tul.beautyscanner.model.*;
 import edu.tul.beautyscanner.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -84,24 +82,25 @@ public class UserController {
     }
 
     @GetMapping("/{id}/userProducts")
-    public ResponseEntity<UserMyProduct> getMyProductUserById(@PathVariable("id") Long id) {
+    public ResponseEntity<List<MyProduct>> getMyProductUserById(@PathVariable("id") Long id) {
         Optional<User> userData = userRepository.findById(id);
 
         if (userData.isPresent()) {
             UserMyProduct userMyProduct = userMyProductRepository.findProductsByUser(userData.get());
-            return new ResponseEntity<>(userMyProduct, HttpStatus.OK);
+
+            return new ResponseEntity<>(userMyProduct.getMyProducts(), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     @GetMapping("/{id}/userAllergens")
-    public ResponseEntity<UserAllergen> getAllergenUserById(@PathVariable("id") Long id) {
+    public ResponseEntity<List<Ingredient>> getAllergenUserById(@PathVariable("id") Long id) {
         Optional<User> userData = userRepository.findById(id);
 
         if (userData.isPresent()) {
             UserAllergen userAllergen = userAllergenRepository.findAllergensByUser(userData.get());
-            return new ResponseEntity<>(userAllergen, HttpStatus.OK);
+            return new ResponseEntity<>(userAllergen.getAllergens(), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
