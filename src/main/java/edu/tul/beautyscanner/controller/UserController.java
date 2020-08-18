@@ -62,19 +62,20 @@ public class UserController {
     public ResponseEntity<String> deleteUserById(@PathVariable("userId") Long userId) {
         try {
             userRepository.deleteById(userId);
-            return new ResponseEntity<>("Delete successful of userID: "+userId, HttpStatus.OK);
+            return new ResponseEntity<>("Delete successful of userID: " + userId, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @PutMapping("/updatePassword/{userId}")
-    public ResponseEntity<UserPassword> updatePassword(@PathVariable("userId") Long userId, @RequestBody UserPassword userPassword) {
+    public ResponseEntity<UserPassword> updatePassword(@PathVariable("userId") Long userId, @RequestBody String userPassword) {
         Optional<User> userData = userRepository.findById(userId);
 
         if (userData.isPresent()) {
             UserPassword userPasswordData = userPasswordRepository.findByUser(userData.get());
-            userPasswordData.setPassword(userPassword.getPassword());
+            String password = userPassword.substring(1, userPassword.length()-1);
+            userPasswordData.setPassword(password);
             return new ResponseEntity<>(userPasswordRepository.save(userPasswordData), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -106,6 +107,36 @@ public class UserController {
         }
     }
 
+    @GetMapping("/login/{nick}/{password}")
+    public ResponseEntity<User> loginUser(@PathVariable("nick") String nick, @PathVariable("password") String password) {
+        Optional<UserPassword> userPasswordData = userPasswordRepository.findByUserNickAndPassword(nick, password);
+        if (userPasswordData.isPresent()) {
+            return new ResponseEntity<>(userPasswordData.get().getUser(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PostMapping("/createUser")
+    public ResponseEntity<User> createUserAccount(@RequestBody UserRegistration userRegistration) {
+        try {
+            User newUser = User.builder()
+                    .nick(userRegistration.getNick())
+                    .email(userRegistration.getEmail())
+                    .role(Role.USER).build();
+            userRepository.save(newUser);
+            UserPassword newUserPassword = UserPassword.builder()
+                    .user(newUser)
+                    .password(userRegistration.getPassword())
+                    .build();
+            userPasswordRepository.save(newUserPassword);
+            System.out.println("yeah");
+            return new ResponseEntity<>(newUser, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+    }
 
     //todo
     //dodawanie/usuwanie allergenow
