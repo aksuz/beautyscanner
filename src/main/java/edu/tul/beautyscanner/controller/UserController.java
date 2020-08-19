@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -89,6 +90,39 @@ public class UserController {
         if (userData.isPresent()) {
             UserMyProduct userMyProduct = userMyProductRepository.findProductsByUser(userData.get());
 
+            if (userMyProduct != null && !userMyProduct.getMyProducts().isEmpty()) {
+                return new ResponseEntity<>(userMyProduct.getMyProducts(), HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PostMapping("/{id}/userProducts/addProduct")
+    public ResponseEntity<List<MyProduct>> getMyProductUserById(@PathVariable("id") Long id, @RequestBody MyProduct myProduct) {
+        Optional<User> userData = userRepository.findById(id);
+
+        if (userData.isPresent()) {
+            UserMyProduct userMyProduct;
+            if (userMyProductRepository.findProductsByUser(userData.get()) == null) {
+                List<MyProduct> emptyList = new ArrayList<>();
+                userMyProduct = UserMyProduct.builder()
+                        .myProducts(emptyList)
+                        .user(userData.get()).build();
+            } else {
+                userMyProduct = userMyProductRepository.findProductsByUser(userData.get());
+            }
+            MyProduct newMyProduct = MyProduct.builder()
+                    .productId(myProduct.getProductId())
+                    .expirationTime(myProduct.getExpirationTime())
+                    .openingDate(myProduct.getOpeningDate())
+                    .productRating(myProduct.getProductRating())
+                    .build();
+            userMyProduct.getMyProducts().add(newMyProduct);
+            myProductRepository.save(newMyProduct);
+            userMyProductRepository.save(userMyProduct);
             return new ResponseEntity<>(userMyProduct.getMyProducts(), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -101,7 +135,11 @@ public class UserController {
 
         if (userData.isPresent()) {
             UserAllergen userAllergen = userAllergenRepository.findAllergensByUser(userData.get());
-            return new ResponseEntity<>(userAllergen.getAllergens(), HttpStatus.OK);
+            if (userAllergen != null && !userAllergen.getAllergens().isEmpty()) {
+                return new ResponseEntity<>(userAllergen.getAllergens(), HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
