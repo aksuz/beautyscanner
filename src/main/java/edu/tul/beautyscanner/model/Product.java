@@ -35,7 +35,6 @@ public class Product implements Serializable {
     @ManyToOne
     private Category category;
 
-//    @Column(name = "ingredient_list")
     @ManyToMany
     @JoinTable(name = "product_ingredient")
     private List<Ingredient> ingredients;
@@ -44,6 +43,5 @@ public class Product implements Serializable {
     private String picture;
     private double noRatingVotes;
     private double sumRainingVotes;
-
 
 }

@@ -18,17 +18,14 @@ import java.util.Optional;
 @RequestMapping("/api/products")
 public class ProductController {
 
-    //todo
-    //dodac
-    //update
-    //wyswietllic z alergenami
-
     private ProductRepository productRepository;
     private IngredientRepository ingredientRepository;
     private CategoryRepository categoryRepository;
 
     @Autowired
-    public ProductController(ProductRepository productRepository, IngredientRepository ingredientRepository, CategoryRepository categoryRepository) {
+    public ProductController(ProductRepository productRepository,
+                             IngredientRepository ingredientRepository,
+                             CategoryRepository categoryRepository) {
         this.productRepository = productRepository;
         this.ingredientRepository = ingredientRepository;
         this.categoryRepository = categoryRepository;
